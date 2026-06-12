@@ -11,7 +11,7 @@ import {
   MOCK_REQUESTS,
   USER_TRUST,
 } from "@/lib/dashboard-data";
-import { formatHoursPrice, MARKETPLACE_CATEGORIES } from "@/lib/marketplace";
+import { formatChronosPrice, MARKETPLACE_CATEGORIES } from "@/lib/marketplace";
 import {
   IconArrowRight,
   IconClock,
@@ -102,7 +102,7 @@ function SmallOpportunity({
         </p>
       </div>
       <span className="shrink-0 rounded-full bg-[#f6f1e8] px-3 py-1 text-xs font-semibold text-[#1d251f]">
-        {formatHoursPrice(hours)}
+        {formatChronosPrice(hours)}
       </span>
     </Link>
   );
@@ -141,9 +141,9 @@ export function DashboardHome() {
               <div>
                 <p className="text-sm text-white/62">Your balance</p>
                 <p className="mt-2 flex items-end gap-2 text-5xl font-semibold tracking-tight">
-                  {HOUR_BALANCE.current}
+                  ₡{HOUR_BALANCE.current}
                   <span className="pb-1 text-base font-medium text-white/62">
-                    hours
+                    Chronos
                   </span>
                 </p>
               </div>

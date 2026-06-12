@@ -54,7 +54,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               <IconClock className="h-5 w-5" stroke={2} />
             </span>
             <span className="dashboard-sidebar__label min-w-0 overflow-hidden whitespace-nowrap text-lg font-semibold">
-              ChronoShare
+              ChronoCross
             </span>
           </Link>
 
@@ -135,7 +135,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#14261f] text-[#f6c35b]">
               <IconClock className="h-5 w-5" stroke={2} />
             </span>
-            ChronoShare
+            ChronoCross
           </Link>
           <button
             type="button"

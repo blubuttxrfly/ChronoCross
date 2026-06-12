@@ -1,7 +1,7 @@
 "use client";
 
 import { MemberAvatar } from "@/components/app/member-avatar";
-import { categoryGradient, formatHoursPrice } from "@/lib/marketplace";
+import { categoryGradient, formatChronosPrice } from "@/lib/marketplace";
 import { cn } from "@/lib/utils";
 import { IconClock, IconHeart, IconMapPin } from "@tabler/icons-react";
 import Link from "next/link";
@@ -105,7 +105,7 @@ export function ListingCard({
           <div className="flex shrink-0 items-center gap-1 text-[#1d251f]">
             <IconClock className="h-3.5 w-3.5 text-[#b5791b]" stroke={2} />
             <span className="text-[13px] font-semibold tabular-nums">
-              {formatHoursPrice(hours)}
+              {formatChronosPrice(hours)}
             </span>
           </div>
         </div>

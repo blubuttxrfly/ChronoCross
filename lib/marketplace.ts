@@ -25,7 +25,6 @@ export function categoryGradient(category: string) {
   return match?.gradient ?? "from-amber-300 to-orange-400";
 }
 
-export function formatHoursPrice(hours: number) {
-  if (hours < 1) return `${hours * 60} min`;
-  return `${hours} hr${hours === 1 ? "" : "s"}`;
+export function formatChronosPrice(hours: number): string {
+  return `₡${hours}`;
 }

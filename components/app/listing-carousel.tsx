@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { formatHoursPrice } from "@/lib/marketplace";
+import { formatChronosPrice } from "@/lib/marketplace";
 import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -94,7 +94,7 @@ function ListingCarouselCard({ item }: { item: CarouselListingItem }) {
             Time exchange
           </span>
           <span className="ml-auto text-xs font-medium tracking-tight">
-            {formatHoursPrice(item.hours)}
+            {formatChronosPrice(item.hours)}
           </span>
         </CardFooter>
       </div>
