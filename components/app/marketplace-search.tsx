@@ -26,7 +26,7 @@ export function MarketplaceSearch({
     <div className={cn("w-full", className)}>
       {/* Search Bar */}
       <div className="relative">
-        <div className="flex h-14 items-center overflow-hidden rounded-full border border-[#d4cfc4] bg-white shadow-sm transition-shadow focus-within:shadow-md focus-within:ring-2 focus-within:ring-[#14261f]/10">
+        <div className="flex h-[60px] items-center overflow-hidden rounded-full border border-[#d4cfc4] bg-white shadow-sm transition-shadow focus-within:shadow-md focus-within:ring-2 focus-within:ring-[#14261f]/10">
           {/* Search Icon */}
           <div className="flex h-full items-center pl-5 pr-3">
             <IconSearch
@@ -48,7 +48,7 @@ export function MarketplaceSearch({
           <div className="pr-2">
             <button
               type="button"
-              className="h-10 rounded-full bg-[#14261f] px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#1e352b] active:scale-[0.98]"
+              className="h-[44px] rounded-full bg-[#14261f] px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#1e352b] active:scale-[0.98]"
             >
               Search
             </button>
