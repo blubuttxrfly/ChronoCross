@@ -53,7 +53,7 @@ export function Navbar() {
         </nav>
 
         <div className="navbar__actions">
-          <a href="#join" className="navbar__cta">
+          <a href="/auth" className="navbar__cta">
             Join the bank
           </a>
 
@@ -98,7 +98,7 @@ export function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="#join"
+                href="/auth"
                 className="navbar__mobile-cta"
                 onClick={closeMobile}
                 initial={{ opacity: 0, x: -12 }}

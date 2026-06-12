@@ -1,7 +1,55 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
-  --color-primary: #e1e0cc;
+  --color-primary: #1a3c2e;
+  --color-primary-hover: #143024;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #fafaf8;
+  --color-surface-muted: #f5f0e8;
+  --color-border: #e2d9cc;
+  --color-border-subtle: #ede7d9;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #6b5e52;
+  --color-text-tertiary: #9b8e82;
+  --color-accent: #d4820a;
+  --color-accent-hover: #b8700a;
+  --color-accent-subtle: #fef3e2;
+  --color-brand: #1a3c2e;
+  --color-brand-hover: #143024;
+  --color-brand-deep: #0f2820;
+  --color-positive: #1a7a4a;
+  --color-positive-subtle: #e8f5ee;
+  --color-negative: #c0392b;
+  --color-negative-subtle: #fef0ef;
+  --color-warning: #d4820a;
+  --color-warning-subtle: #fef3e2;
+  --color-info: #0284c7;
+  --color-info-subtle: #e0f2fe;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --shadow-card: 0 1px 3px rgba(26, 20, 15, 0.06), 0 4px 16px rgba(26, 20, 15, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(26, 20, 15, 0.09), 0 16px 40px rgba(26, 20, 15, 0.13);
+  --shadow-elevated: 0 8px 32px rgba(26, 60, 46, 0.2), 0 2px 8px rgba(26, 20, 15, 0.08);
+}
+
+/* Auth login page — scoped tokens (login-1.tsx) */
+.auth-login {
+  --auth-bg: #101214;
+  --auth-surface: #161a1d;
+  --auth-muted-surface: #1d2125;
+  --auth-border: #2c333a;
+  --auth-text-secondary: #596773;
+  --auth-text-primary: #c7d1db;
+  --auth-heading: #dee4ea;
+  --auth-bg-2: #c7d1db;
+  --auth-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.25);
+}
+
+.auth-login .card {
+  color: var(--auth-text-primary);
 }
 
 * {
@@ -525,6 +573,66 @@ body {
   }
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* App shell — consumer product, not admin dashboard */
+
+.dashboard-card {
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.dashboard-sidebar {
+  width: 4.75rem;
+  transition: width 240ms ease;
+}
+
+.dashboard-sidebar:hover,
+.dashboard-sidebar:focus-within {
+  width: 17rem;
+}
+
+.dashboard-sidebar__item {
+  justify-content: center;
+}
+
+.dashboard-sidebar:hover .dashboard-sidebar__item,
+.dashboard-sidebar:focus-within .dashboard-sidebar__item {
+  justify-content: flex-start;
+}
+
+.dashboard-sidebar__label {
+  max-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    max-width 220ms ease,
+    opacity 160ms ease,
+    visibility 160ms ease;
+}
+
+.dashboard-sidebar:hover .dashboard-sidebar__label,
+.dashboard-sidebar:focus-within .dashboard-sidebar__label {
+  max-width: 12rem;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 768px) {
+  .dashboard-main {
+    padding-left: 4.75rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -536,5 +644,10 @@ body {
 
   .scroll-hint__icon {
     animation: none;
+  }
+
+  .dashboard-sidebar,
+  .dashboard-sidebar__label {
+    transition: none;
   }
 }
