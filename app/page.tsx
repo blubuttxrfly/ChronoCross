@@ -1,65 +1,117 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Clock, Users, Sprout, ArrowRight } from 'lucide-react';
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      {/* Header */}
+      <header className="border-b border-purple-100 bg-white/50 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <Clock className="w-8 h-8 text-purple-600" />
+            <span className="text-xl font-semibold text-purple-900">ChronoShare</span>
+          </div>
+          <nav className="flex gap-6">
+            <Link href="/auth" className="text-purple-700 hover:text-purple-900">
+              Sign In
+            </Link>
+          </nav>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </header>
+
+      {/* Hero */}
+      <main className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-light text-purple-900 mb-6">
+            Time Banking for Environmental Action
+          </h1>
+          <p className="text-xl text-purple-700 mb-8">
+            1 hour = 1 hour, for everyone. No extraction, pure reciprocity.
+          </p>
+          <Link
+            href="/auth"
+            className="inline-flex items-center gap-2 bg-purple-600 text-white px-8 py-4 rounded-full text-lg hover:bg-purple-700 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Get Started
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+
+        {/* Features */}
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-purple-100">
+            <Sprout className="w-12 h-12 text-green-600 mb-4" />
+            <h3 className="text-xl font-semibold text-purple-900 mb-2">
+              Environmental Focus
+            </h3>
+            <p className="text-purple-700">
+              Exchange skills for climate action: gardening, solar, resilience, education, and mutual aid.
+            </p>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-purple-100">
+            <Users className="w-12 h-12 text-purple-600 mb-4" />
+            <h3 className="text-xl font-semibold text-purple-900 mb-2">
+              Equal Value
+            </h3>
+            <p className="text-purple-700">
+              A gardener's hour equals a lawyer's hour. Time is the great equalizer.
+            </p>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-purple-100">
+            <Clock className="w-12 h-12 text-pink-600 mb-4" />
+            <h3 className="text-xl font-semibold text-purple-900 mb-2">
+              Start with 1 Hour
+            </h3>
+            <p className="text-purple-700">
+              Everyone begins with 1 hour of community connection. Dignity, not debt.
+            </p>
+          </div>
+        </div>
+
+        {/* How It Works */}
+        <div className="bg-white p-12 rounded-2xl shadow-sm border border-purple-100">
+          <h2 className="text-3xl font-light text-purple-900 text-center mb-12">
+            How It Works
+          </h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-purple-600">1</span>
+              </div>
+              <h4 className="font-semibold text-purple-900 mb-2">Sign Up</h4>
+              <p className="text-purple-700">Create your account and receive 1 hour</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-purple-600">2</span>
+              </div>
+              <h4 className="font-semibold text-purple-900 mb-2">Post</h4>
+              <p className="text-purple-700">Offer a skill or request help</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-purple-600">3</span>
+              </div>
+              <h4 className="font-semibold text-purple-900 mb-2">Connect</h4>
+              <p className="text-purple-700">Browse and exchange with your community</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-purple-600">4</span>
+              </div>
+              <h4 className="font-semibold text-purple-900 mb-2">Exchange</h4>
+              <p className="text-purple-700">Complete the exchange and watch balances update</p>
+            </div>
+          </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-purple-100 bg-white/50 backdrop-blur-sm mt-20">
+        <div className="max-w-6xl mx-auto px-6 py-8 text-center text-purple-700">
+          <p>Built for the Hopamine Green Hackathon — June 13–14, 2026</p>
+        </div>
+      </footer>
     </div>
   );
 }
