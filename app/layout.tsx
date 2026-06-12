@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ChronoShare",
-  description: "ChronoShare",
+  title: "ChronoCross",
+  description:
+    "A community time bank where neighbors exchange skills hour-for-hour.",
   manifest: "/manifest.json",
 };
 

@@ -1,9 +1,5 @@
-import MountainVistaParallax from "@/components/ui/mountain-vista-bg";
+import { LandingPage } from "@/components/landing/landing-page";
 
 export default function HomePage() {
-  return (
-    <div className="app-container">
-      <MountainVistaParallax title="ChronoShare" />
-    </div>
-  );
+  return <LandingPage />;
 }
