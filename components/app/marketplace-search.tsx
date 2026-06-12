@@ -24,10 +24,10 @@ export function MarketplaceSearch({
 
   return (
     <div className={cn("space-y-4", className)}>
-      <div className="flex min-h-14 overflow-hidden rounded-full border border-[#ded8cf] bg-white shadow-[0_10px_32px_rgba(31,35,29,0.08)] transition-shadow focus-within:shadow-[0_16px_42px_rgba(31,35,29,0.12)]">
+      <div className="aero-panel flex min-h-14 overflow-hidden rounded-full transition-shadow focus-within:shadow-[0_16px_42px_rgba(32,142,180,0.18)]">
         <div className="flex min-w-0 flex-1 items-center gap-3 px-5 py-3 sm:px-6">
           <IconSearch
-            className="h-5 w-5 shrink-0 text-[#77756d]"
+            className="h-5 w-5 shrink-0 text-[#408399]"
             stroke={1.75}
           />
           <input
@@ -35,13 +35,13 @@ export function MarketplaceSearch({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search gardening, repairs, errands..."
-            className="min-w-0 flex-1 bg-transparent text-[15px] font-medium text-[#1a1a1a] placeholder:text-[#929087] focus:outline-none"
+            className="min-w-0 flex-1 bg-transparent text-[15px] font-medium text-[#0f3442] placeholder:text-[#6d93a0] focus:outline-none"
           />
         </div>
         <div className="hidden shrink-0 p-1.5 sm:block">
           <button
             type="button"
-            className="h-full rounded-full bg-[#14261f] px-7 text-sm font-semibold text-white transition-colors hover:bg-[#1e352b] active:scale-[0.98]"
+            className="aero-button h-full rounded-full px-7 text-sm font-semibold active:scale-[0.98]"
           >
             Search
           </button>
@@ -60,8 +60,8 @@ export function MarketplaceSearch({
               className={cn(
                 "inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-[13px] font-semibold transition-all duration-150",
                 active
-                  ? "border-[#14261f] bg-[#14261f] text-white shadow-sm"
-                  : "border-[#ded8cf] bg-white/86 text-[#575c55] hover:border-[#14261f]/35 hover:text-[#1d251f]",
+                  ? "border-white/70 bg-gradient-to-br from-[#0ab4ff] to-[#00c986] text-white shadow-sm"
+                  : "aero-chip text-[#315462] hover:text-[#0f3442]",
               )}
             >
               {Icon && <Icon className="h-3.5 w-3.5" stroke={1.75} />}
