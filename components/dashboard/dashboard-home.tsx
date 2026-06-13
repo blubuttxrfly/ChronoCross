@@ -127,16 +127,16 @@ export function DashboardHome() {
                 <IconHeartHandshake className="h-4 w-4 text-[#b5791b]" stroke={2} />
                 Community Time Bank
               </div>
-              <h1 className="mt-4 sm:mt-5 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-[#16241d]">
+              <h1 className="mt-5 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-[#16241d]">
                 Find help nearby. Pay with hours.
               </h1>
-              <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-[#646860]">
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#646860]">
                 Trade one hour of your skills for one hour from someone else.
                 Browse neighbors offering repairs, tutoring, gardening, errands,
                 and the everyday help that makes life easier.
               </p>
             </div>
-            <div className="relative z-10 mt-6 max-w-xl">
+            <div className="relative z-10 mt-8 sm:mt-10 ml-2 sm:ml-4">
               <MarketplaceSearch />
             </div>
           </div>
