@@ -134,8 +134,8 @@ export function AuthPageClient() {
 
   if (isLoading || user) {
     return (
-      <div className="auth-login flex min-h-screen items-center justify-center bg-[var(--auth-bg)]">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--auth-border)] border-t-[var(--auth-text-primary)]" />
+      <div className="auth-login flex min-h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-[rgba(42,122,151,0.18)] border-t-[#0aa8ff]" />
       </div>
     );
   }
@@ -159,8 +159,8 @@ export function AuthPageClient() {
       info={info}
       footer={
         isDevLoginEnabled && step === "credentials" ? (
-          <div className="border-t border-[var(--auth-border)] pt-4">
-            <p className="mb-3 text-center text-xs text-[var(--auth-text-secondary)]">
+          <div>
+            <p className="mb-3 text-center text-xs font-medium uppercase tracking-[0.08em] text-[var(--auth-text-secondary)]">
               Development only
             </p>
             <button
@@ -169,7 +169,7 @@ export function AuthPageClient() {
                 devLogin();
                 router.push("/dashboard");
               }}
-              className="w-full rounded-lg border border-dashed border-amber-500/40 bg-amber-500/10 py-2.5 text-sm font-medium text-amber-200 transition hover:border-amber-500/60 hover:bg-amber-500/15"
+              className="w-full rounded-xl border border-dashed border-[rgba(212,130,10,0.35)] bg-[rgba(254,243,226,0.75)] py-2.5 text-sm font-medium text-[#9a6208] transition hover:border-[rgba(212,130,10,0.55)] hover:bg-[rgba(254,243,226,0.95)]"
             >
               Continue as Dev User
             </button>
