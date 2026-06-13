@@ -1,18 +1,22 @@
 "use client";
 
-import { useAuth } from "@/lib/auth";
+import { isDevLoginEnabled, useAuth } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, devLogin } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!isLoading && !user) {
-      router.replace("/auth");
+      if (isDevLoginEnabled) {
+        devLogin();
+      } else {
+        router.replace("/auth");
+      }
     }
-  }, [user, isLoading, router]);
+  }, [user, isLoading, router, devLogin]);
 
   if (isLoading) {
     return (
