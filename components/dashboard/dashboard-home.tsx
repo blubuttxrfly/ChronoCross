@@ -116,7 +116,7 @@ export function DashboardHome() {
   const categories = MARKETPLACE_CATEGORIES.filter((category) => category.id !== "all");
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-8 sm:px-10 lg:px-12 py-12 sm:py-14">
+    <div className="w-full max-w-7xl mx-auto">
       {/* Hero Section */}
       <section className="mb-10 sm:mb-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_320px]">

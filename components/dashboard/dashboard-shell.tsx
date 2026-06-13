@@ -174,7 +174,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main className="dashboard-main min-h-screen md:pl-[4.75rem]">
-        {children}
+        <div className="px-6 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+          {children}
+        </div>
       </main>
     </div>
   );
