@@ -116,12 +116,12 @@ export function DashboardHome() {
   const categories = MARKETPLACE_CATEGORIES.filter((category) => category.id !== "all");
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-10 sm:py-12">
       {/* Hero Section */}
       <section className="mb-8 sm:mb-10">
         <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
           {/* Main Hero Card */}
-          <div className="relative overflow-visible rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-6 sm:p-8 shadow-sm">
+          <div className="relative overflow-visible rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-8 sm:p-10 shadow-sm">
             <div className="relative z-10 max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold text-[#5c5f57] shadow-sm backdrop-blur-sm">
                 <IconHeartHandshake className="h-4 w-4 text-[#b5791b]" stroke={2} />
