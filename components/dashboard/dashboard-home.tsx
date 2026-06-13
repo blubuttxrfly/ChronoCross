@@ -121,7 +121,7 @@ export function DashboardHome() {
       <section className="mb-10 sm:mb-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
           {/* Main Hero Card */}
-          <div className="relative overflow-visible rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-10 sm:p-12 lg:p-14 shadow-sm">
+          <div className="relative rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-10 sm:p-12 lg:p-14 pb-8 sm:pb-10 shadow-sm">
             <div className="relative z-10 max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold text-[#5c5f57] shadow-sm backdrop-blur-sm">
                 <IconHeartHandshake className="h-4 w-4 text-[#b5791b]" stroke={2} />
