@@ -68,49 +68,49 @@ export function ListingCard({
     >
       <div
         className={cn(
-          "relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br shadow-sm transition-shadow duration-200 group-hover:shadow-md",
+          "relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br shadow-[0_14px_32px_rgba(32,142,180,0.14)] transition-shadow duration-200 group-hover:shadow-[0_18px_40px_rgba(32,142,180,0.2)]",
           categoryGradient(category),
         )}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_22%,rgba(255,255,255,0.68),transparent_26%),linear-gradient(to_top,rgba(20,38,31,0.32),rgba(20,38,31,0.02)_58%)] opacity-90" />
-        <div className="absolute inset-0 bg-[#14261f]/10" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.60),rgba(255,255,255,0.04)_42%),linear-gradient(to_top,rgba(0,96,148,0.34),rgba(0,156,210,0.04)_60%)] opacity-95" />
+        <div className="absolute inset-x-0 top-0 h-1/2 bg-white/18" />
         <span
           className={cn(
             "absolute top-3 left-3 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold shadow-sm backdrop-blur-sm",
             isOffer
-              ? "bg-white/92 text-[#14261f]"
-              : "bg-[#14261f]/86 text-white",
+              ? "bg-white/88 text-[#047c9e]"
+              : "bg-[#047c9e]/82 text-white",
           )}
         >
           <span
             className={cn(
               "h-1.5 w-1.5 rounded-full",
-              isOffer ? "bg-emerald-500" : "bg-[#f6c35b]",
+              isOffer ? "bg-[#00c986]" : "bg-[#d8ff6b]",
             )}
           />
           {isOffer ? "Available" : "Needed"}
         </span>
         <SaveButton className="absolute top-3 right-3" />
 
-        <div className="absolute bottom-4 left-4 flex rounded-full bg-white/92 px-3 py-1.5 text-xs font-semibold text-[#14261f] shadow-sm backdrop-blur-sm">
+        <div className="aero-chip absolute bottom-4 left-4 flex rounded-full px-3 py-1.5 text-xs font-semibold text-[#0f3442]">
           {category}
         </div>
       </div>
 
       <div className="mt-3 min-w-0">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="line-clamp-1 text-base font-semibold leading-snug text-[#1d251f]">
+          <h3 className="line-clamp-1 text-base font-semibold leading-snug text-[#0f3442]">
             {title}
           </h3>
-          <div className="flex shrink-0 items-center gap-1 text-[#1d251f]">
-            <IconClock className="h-3.5 w-3.5 text-[#b5791b]" stroke={2} />
+          <div className="flex shrink-0 items-center gap-1 text-[#0f3442]">
+            <IconClock className="h-3.5 w-3.5 text-[#008ac1]" stroke={2} />
             <span className="text-[13px] font-semibold tabular-nums">
               {formatChronosPrice(hours)}
             </span>
           </div>
         </div>
 
-        <p className="mt-1.5 flex items-center gap-1 text-[13px] text-[#74776f]">
+        <p className="mt-1.5 flex items-center gap-1 text-[13px] text-[#5e8490]">
           <IconMapPin className="h-3.5 w-3.5" stroke={1.8} />
           Nearby / {posted}
         </p>
@@ -121,7 +121,7 @@ export function ListingCard({
             size="sm"
             className="!h-5 !w-5 !text-[8px]"
           />
-          <span className="truncate text-[13px] font-medium text-[#5d625b]">
+          <span className="truncate text-[13px] font-medium text-[#466d79]">
             {memberName}
           </span>
         </div>
