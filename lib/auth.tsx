@@ -203,10 +203,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [supabase]);
 
   const devLogin = useCallback(() => {
-    if (!isDevLoginEnabled) return;
     document.cookie = "dev_bypass=1; path=/; max-age=86400; SameSite=Lax";
     setUser(DEV_USER);
   }, []);
+
+  // Auto-login as demo user when Supabase is not configured (hackathon preview)
+  useEffect(() => {
+    if (!supabase && !user) {
+      devLogin();
+    }
+  }, [supabase, user, devLogin]);
 
   const signOut = useCallback(async () => {
     document.cookie = "dev_bypass=; path=/; max-age=0; SameSite=Lax";
