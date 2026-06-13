@@ -56,13 +56,13 @@ function SectionHeader({
   href?: string;
 }) {
   return (
-    <div className="mb-6 flex items-center justify-between gap-4">
+    <div className="mb-8 sm:mb-10 flex items-center justify-between gap-4">
       <div>
         <h2 className="text-2xl font-semibold tracking-tight text-[#1d251f]">
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-1.5 text-sm text-[#74776f]">{subtitle}</p>
+          <p className="mt-2 text-sm text-[#74776f]">{subtitle}</p>
         )}
       </div>
       {href && (
@@ -94,16 +94,16 @@ function SmallOpportunity({
   return (
     <Link
       href={type === "offer" ? "/dashboard/offers" : "/dashboard/requests"}
-      className="flex items-center gap-3 rounded-2xl border border-[#e7e1d8] bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+      className="flex items-center gap-4 rounded-2xl border border-[#e7e1d8] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
     >
       <MemberAvatar name={memberName} size="sm" className="!h-11 !w-11" />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-[#1d251f]">{title}</p>
-        <p className="mt-0.5 text-xs text-[#74776f]">
+        <p className="mt-1 text-xs text-[#74776f]">
           {category}
         </p>
       </div>
-      <span className="shrink-0 rounded-full bg-[#f6f1e8] px-3 py-1.5 text-xs font-semibold text-[#1d251f]">
+      <span className="shrink-0 rounded-full bg-[#f6f1e8] px-4 py-2 text-xs font-semibold text-[#1d251f]">
         {formatChronosPrice(hours)}
       </span>
     </Link>
@@ -116,35 +116,35 @@ export function DashboardHome() {
   const categories = MARKETPLACE_CATEGORIES.filter((category) => category.id !== "all");
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-10 sm:py-12">
+    <div className="w-full max-w-7xl mx-auto px-8 sm:px-10 lg:px-12 py-12 sm:py-14">
       {/* Hero Section */}
-      <section className="mb-8 sm:mb-10">
-        <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+      <section className="mb-10 sm:mb-12">
+        <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
           {/* Main Hero Card */}
-          <div className="relative overflow-visible rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-8 sm:p-10 shadow-sm">
+          <div className="relative overflow-visible rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-10 sm:p-12 lg:p-14 shadow-sm">
             <div className="relative z-10 max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold text-[#5c5f57] shadow-sm backdrop-blur-sm">
                 <IconHeartHandshake className="h-4 w-4 text-[#b5791b]" stroke={2} />
                 Community Time Bank
               </div>
-              <h1 className="mt-5 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-[#16241d]">
+              <h1 className="mt-6 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-[#16241d]">
                 Find help nearby. Pay with hours.
               </h1>
-              <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#646860]">
+              <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#646860]">
                 Trade one hour of your skills for one hour from someone else.
                 Browse neighbors offering repairs, tutoring, gardening, errands,
                 and the everyday help that makes life easier.
               </p>
             </div>
-            <div className="relative z-10 mt-8 sm:mt-10 ml-2 sm:ml-4">
+            <div className="relative z-10 mt-10 sm:mt-12">
               <MarketplaceSearch />
             </div>
           </div>
 
           {/* Sidebar Cards */}
-          <aside className="flex flex-col gap-4">
+          <aside className="flex flex-col gap-5">
             {/* Balance Card */}
-            <div className="rounded-3xl bg-[#14261f] p-6 text-white shadow-sm">
+            <div className="rounded-3xl bg-[#14261f] p-8 text-white shadow-sm">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-sm font-medium text-white/70">Your Balance</p>
@@ -157,7 +157,7 @@ export function DashboardHome() {
                   <IconClock className="h-6 w-6" stroke={2} />
                 </span>
               </div>
-              <div className="mt-6 grid grid-cols-3 gap-3 border-t border-white/15 pt-5">
+              <div className="mt-6 grid grid-cols-3 gap-3 border-t border-white/15 pt-6">
                 <div>
                   <p className="text-lg font-semibold">{USER_TRUST.neighborsHelped}</p>
                   <p className="mt-1 text-xs text-white/60">Helped</p>
@@ -174,7 +174,7 @@ export function DashboardHome() {
             </div>
 
             {/* Trust Card */}
-            <div className="rounded-3xl border border-[#e2ddd4] bg-white p-6 shadow-sm">
+            <div className="rounded-3xl border border-[#e2ddd4] bg-white p-8 shadow-sm">
               <div className="flex items-center gap-3">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#eaf4ee] text-[#24734d]">
                   <IconShieldCheck className="h-6 w-6" stroke={2} />
@@ -201,12 +201,12 @@ export function DashboardHome() {
       </section>
 
       {/* Categories Section */}
-      <section className="mb-8 sm:mb-10">
+      <section className="mb-10 sm:mb-12">
         <SectionHeader
           title="Browse by category"
           subtitle="Find the perfect exchange for your needs"
         />
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-6">
           {categories.map((category) => (
             <CategoryTile key={category.id} {...category} />
           ))}
@@ -214,7 +214,7 @@ export function DashboardHome() {
       </section>
 
       {/* Featured Offers Section */}
-      <section className="mb-8 sm:mb-10">
+      <section className="mb-10 sm:mb-12">
         <SectionHeader
           title="Popular offers nearby"
           subtitle="Book an hour from someone in the community"
@@ -237,7 +237,7 @@ export function DashboardHome() {
       </section>
 
       {/* Requests + Community Grid */}
-      <section className="mb-8 sm:mb-10 grid gap-8 lg:grid-cols-[1fr_360px]">
+      <section className="mb-10 sm:mb-12 grid gap-10 lg:grid-cols-[1fr_360px]">
         {/* Requests Column */}
         <div>
           <SectionHeader
@@ -245,7 +245,7 @@ export function DashboardHome() {
             subtitle="Earn Chronos by answering open requests"
             href="/dashboard/requests"
           />
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {openRequests.map((request) => (
               <SmallOpportunity key={request.id} type="request" {...request} />
             ))}
@@ -255,12 +255,12 @@ export function DashboardHome() {
         {/* Community Members Column */}
         <div>
           <SectionHeader title="Active members" href="/dashboard/community" />
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {COMMUNITY_MEMBERS.slice(0, 4).map((member) => (
               <Link
                 key={member.id}
                 href="/dashboard/community"
-                className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
                 <MemberAvatar name={member.name} size="sm" className="!h-11 !w-11" />
                 <div className="min-w-0 flex-1">

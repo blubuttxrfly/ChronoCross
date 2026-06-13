@@ -44,7 +44,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#f4f1ea] text-[#1c211d]">
       <aside className="dashboard-sidebar fixed top-0 bottom-0 left-0 z-50 hidden border-r border-[#d9d2c4] bg-[#14261f] shadow-[18px_0_45px_rgba(20,38,31,0.12)] md:flex">
-        <div className="flex min-w-0 flex-1 flex-col overflow-hidden px-3 py-4">
+        <div className="flex min-w-0 flex-1 flex-col overflow-hidden px-4 py-5">
           <Link
             href="/dashboard"
             className="dashboard-sidebar__item flex h-12 items-center gap-3 rounded-lg px-2 text-white"
@@ -68,7 +68,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </span>
           </Link>
 
-          <nav className="mt-6 flex flex-1 flex-col gap-1">
+          <nav className="mt-8 flex flex-1 flex-col gap-2">
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
               const active = isActive(link.href);
