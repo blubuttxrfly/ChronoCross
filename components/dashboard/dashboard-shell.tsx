@@ -41,8 +41,8 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const isActive = (href: string) =>
     href === "/dashboard" ? pathname === href : pathname.startsWith(href);
 
-  const handleLogout = () => {
-    signOut();
+  const handleLogout = async () => {
+    await signOut();
     router.push("/auth");
   };
 

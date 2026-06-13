@@ -48,8 +48,8 @@ export function ProfilePage() {
   const { user, signOut } = useAuth();
   const router = useRouter();
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    await signOut();
     router.push("/auth");
   };
 

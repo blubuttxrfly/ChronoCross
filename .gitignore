@@ -13,9 +13,11 @@
 # next.js
 /.next/
 /out/
+.turbo
 
 # production
 /build
+/dist
 
 # testing
 /coverage
@@ -24,8 +26,9 @@
 *.tsbuildinfo
 next-env.d.ts
 
-# env files
+# env files (never commit secrets)
 .env*
+!.env.example
 
 # debug logs
 npm-debug.log*
@@ -38,7 +41,9 @@ yarn-error.log*
 Thumbs.db
 desktop.ini
 
-# editor
+# editor / IDE (keep shared project MCP config)
+.cursor/*
+!.cursor/mcp.json
 .vscode/
 .idea/
 *.swp
@@ -47,6 +52,12 @@ desktop.ini
 
 # vercel / deployment
 .vercel
+
+# supabase local CLI
+.supabase/
+
+# agent skills (reinstall with: npx skills add supabase/agent-skills)
+.agents/
 
 # secrets
 *.pem
