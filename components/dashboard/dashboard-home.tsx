@@ -116,12 +116,12 @@ export function DashboardHome() {
   const categories = MARKETPLACE_CATEGORIES.filter((category) => category.id !== "all");
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full">
       {/* Hero Section */}
       <section className="mb-10 sm:mb-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
           {/* Main Hero Card */}
-          <div className="relative rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-10 sm:p-12 lg:p-14 pb-8 sm:pb-10 shadow-sm">
+          <div className="relative rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-8 sm:p-10 lg:p-12 pb-8 sm:pb-10 shadow-sm">
             <div className="relative z-10 max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold text-[#5c5f57] shadow-sm backdrop-blur-sm">
                 <IconHeartHandshake className="h-4 w-4 text-[#b5791b]" stroke={2} />
@@ -220,7 +220,7 @@ export function DashboardHome() {
           subtitle="Book an hour from someone in the community"
           href="/dashboard/offers"
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {featuredOffers.map((offer) => (
             <ListingCard
               key={offer.id}
@@ -284,7 +284,7 @@ export function DashboardHome() {
           title="Fresh in your network"
           subtitle="New opportunities just for you"
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {HOME_FEED.map((item) => (
             <SmallOpportunity key={item.id} {...item} />
           ))}
