@@ -4,64 +4,25 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IconBrandGoogle } from "@tabler/icons-react";
+import { Clock } from "lucide-react";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  placeholder?: string;
-  icon?: React.ReactNode;
-}
+type FieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  label: string;
+};
 
-function AppInput({ label, placeholder, icon, className, ...rest }: InputProps) {
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = React.useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLInputElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
+function AuthField({ label, className, id, ...rest }: FieldProps) {
+  const fieldId = id ?? label.toLowerCase().replace(/\s+/g, "-");
 
   return (
-    <div className="relative w-full min-w-[200px]">
-      {label && (
-        <label className="mb-2 block text-sm text-[var(--auth-text-primary)]">
-          {label}
-        </label>
-      )}
-      <div className="relative w-full">
-        <input
-          type="text"
-          className={`peer relative z-10 h-12 w-full rounded-md border-2 border-[var(--auth-border)] bg-[var(--auth-surface)] px-4 font-light text-[var(--auth-heading)] outline-none drop-shadow-sm transition-all duration-200 ease-in-out placeholder:font-medium placeholder:text-[var(--auth-text-secondary)] focus:bg-[var(--auth-muted-surface)] ${className ?? ""}`}
-          placeholder={placeholder}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          {...rest}
-        />
-        {isHovering && (
-          <>
-            <div
-              className="pointer-events-none absolute top-0 right-0 left-0 z-20 h-[2px] overflow-hidden rounded-t-md"
-              style={{
-                background: `radial-gradient(30px circle at ${mousePosition.x}px 0px, var(--auth-text-primary) 0%, transparent 70%)`,
-              }}
-            />
-            <div
-              className="pointer-events-none absolute right-0 bottom-0 left-0 z-20 h-[2px] overflow-hidden rounded-b-md"
-              style={{
-                background: `radial-gradient(30px circle at ${mousePosition.x}px 2px, var(--auth-text-primary) 0%, transparent 70%)`,
-              }}
-            />
-          </>
-        )}
-        {icon && (
-          <div className="absolute top-1/2 right-3 z-20 -translate-y-1/2">
-            {icon}
-          </div>
-        )}
-      </div>
+    <div className="auth-login__field">
+      <label htmlFor={fieldId} className="auth-login__label">
+        {label}
+      </label>
+      <input
+        id={fieldId}
+        className={`auth-login__input ${className ?? ""}`}
+        {...rest}
+      />
     </div>
   );
 }
@@ -91,6 +52,29 @@ export type Login1Props = {
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=900&fit=crop&q=80";
 
+function AuthAlerts({
+  error,
+  info,
+}: {
+  error?: string;
+  info?: string;
+}) {
+  return (
+    <>
+      {error && (
+        <p className="auth-login__alert auth-login__alert--error" role="alert">
+          {error}
+        </p>
+      )}
+      {info && (
+        <p className="auth-login__alert auth-login__alert--info" role="status">
+          {info}
+        </p>
+      )}
+    </>
+  );
+}
+
 export function Login1({
   mode: modeProp,
   step = "credentials",
@@ -117,16 +101,6 @@ export function Login1({
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [otpCode, setOtpCode] = React.useState("");
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = React.useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -147,270 +121,217 @@ export function Login1({
   const isSignupSuccess = step === "signup-success";
 
   return (
-    <div className="auth-login flex min-h-screen w-full items-center justify-center bg-[var(--auth-bg)] p-4">
-      <div className="card flex h-[min(600px,90vh)] w-full max-w-5xl justify-between overflow-hidden rounded-2xl border border-[var(--auth-border)] bg-[var(--auth-surface)] shadow-[var(--auth-shadow-xl)]">
-        <div
-          className="relative flex h-full w-full flex-col overflow-hidden px-4 py-6 sm:px-10 lg:w-1/2 lg:px-16"
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          <div
-            className={`pointer-events-none absolute h-[500px] w-[500px] rounded-full bg-gradient-to-r from-purple-300/30 via-blue-300/30 to-pink-300/30 blur-3xl transition-opacity duration-200 ${
-              isHovering ? "opacity-100" : "opacity-0"
-            }`}
-            style={{
-              transform: `translate(${mousePosition.x - 250}px, ${mousePosition.y - 250}px)`,
-              transition: "transform 0.1s ease-out",
-            }}
-          />
-
-          <Link
-            href="/"
-            className="relative z-10 mb-4 text-sm font-semibold tracking-tight text-[var(--auth-heading)]"
-          >
-            ChronoCross
+    <div className="auth-login">
+      <div className="auth-login__shell card">
+        <div className="auth-login__panel">
+          <Link href="/" className="auth-login__brand">
+            <span className="auth-login__logo" aria-hidden>
+              <Clock size={18} strokeWidth={2.2} />
+            </span>
+            <span className="font-display text-lg font-semibold tracking-tight">
+              ChronoCross
+            </span>
           </Link>
 
-          <div className="form-container relative z-10 flex h-full flex-col">
-            {!isOtpStep && !isSignupSuccess && (
-              <div className="mb-6 flex rounded-lg bg-[var(--auth-muted-surface)] p-1">
-                <button
-                  type="button"
-                  onClick={() => setMode("signin")}
-                  className={`flex-1 rounded-md py-2 text-sm font-medium transition ${
-                    !isSignUp
-                      ? "bg-[var(--auth-bg-2)] text-[var(--auth-bg)]"
-                      : "text-[var(--auth-text-secondary)] hover:text-[var(--auth-heading)]"
-                  }`}
-                >
-                  Sign in
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMode("signup")}
-                  className={`flex-1 rounded-md py-2 text-sm font-medium transition ${
-                    isSignUp
-                      ? "bg-[var(--auth-bg-2)] text-[var(--auth-bg)]"
-                      : "text-[var(--auth-text-secondary)] hover:text-[var(--auth-heading)]"
-                  }`}
-                >
-                  Sign up
-                </button>
-              </div>
-            )}
-
-            {isSignupSuccess ? (
-              <div className="grid h-full gap-4 text-center">
-                <div className="mb-2 grid gap-4">
-                  <h1 className="text-3xl font-extrabold text-[var(--auth-heading)] md:text-4xl">
-                    Check your email
-                  </h1>
-                  <p className="text-sm text-[var(--auth-text-secondary)]">
-                    We sent a confirmation link to{" "}
-                    <span className="font-medium text-[var(--auth-heading)]">
-                      {pendingEmail ?? email}
-                    </span>
-                    . Click the link to activate your account, then sign in.
-                  </p>
+          <div className="auth-login__content">
+            <div className="auth-login__content-inner">
+              {!isOtpStep && !isSignupSuccess && (
+                <div className="auth-login__tabs">
+                  <button
+                    type="button"
+                    onClick={() => setMode("signin")}
+                    className={`auth-login__tab ${!isSignUp ? "auth-login__tab--active" : ""}`}
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMode("signup")}
+                    className={`auth-login__tab ${isSignUp ? "auth-login__tab--active" : ""}`}
+                  >
+                    Sign up
+                  </button>
                 </div>
-                {info && (
-                  <p className="text-sm text-emerald-400" role="status">
-                    {info}
-                  </p>
-                )}
-                <button
-                  type="button"
-                  onClick={() => {
-                    onBack?.();
-                    setMode("signin");
-                  }}
-                  className="mx-auto rounded-md bg-[var(--auth-border)] px-6 py-2.5 text-sm text-white transition hover:scale-105"
-                >
-                  Back to sign in
-                </button>
-              </div>
-            ) : isOtpStep ? (
-              <form
-                className="grid h-full gap-4 text-center"
-                onSubmit={handleOtpSubmit}
-              >
-                <div className="mb-2 grid gap-4">
-                  <h1 className="text-3xl font-extrabold text-[var(--auth-heading)] md:text-4xl">
-                    Enter verification code
-                  </h1>
-                  <p className="text-sm text-[var(--auth-text-secondary)]">
-                    We sent a 6-digit code to{" "}
-                    <span className="font-medium text-[var(--auth-heading)]">
-                      {pendingEmail ?? email}
-                    </span>
-                  </p>
+              )}
+
+              {isSignupSuccess ? (
+                <div className="grid gap-6 text-left">
+                  <div className="grid gap-2">
+                    <h1 className="font-display text-3xl font-semibold tracking-tight text-[var(--auth-heading)]">
+                      Check your email
+                    </h1>
+                    <p className="text-sm leading-relaxed text-[var(--auth-text-secondary)]">
+                      We sent a confirmation link to{" "}
+                      <span className="font-medium text-[var(--auth-heading)]">
+                        {pendingEmail ?? email}
+                      </span>
+                      . Open it to activate your account, then return here to sign
+                      in.
+                    </p>
+                  </div>
+                  <AuthAlerts info={info} />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onBack?.();
+                      setMode("signin");
+                    }}
+                    className="auth-login__submit"
+                  >
+                    Back to sign in
+                  </button>
                 </div>
+              ) : isOtpStep ? (
+                <form className="auth-login__form" onSubmit={handleOtpSubmit}>
+                  <div className="grid gap-2 text-left">
+                    <h1 className="font-display text-3xl font-semibold tracking-tight text-[var(--auth-heading)]">
+                      Verify your email
+                    </h1>
+                    <p className="text-sm leading-relaxed text-[var(--auth-text-secondary)]">
+                      Enter the 6-digit code sent to{" "}
+                      <span className="font-medium text-[var(--auth-heading)]">
+                        {pendingEmail ?? email}
+                      </span>
+                    </p>
+                  </div>
 
-                <AppInput
-                  placeholder="123456"
-                  type="text"
-                  inputMode="numeric"
-                  autoComplete="one-time-code"
-                  pattern="[0-9]*"
-                  maxLength={6}
-                  value={otpCode}
-                  onChange={(e) =>
-                    setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))
-                  }
-                  required
-                  className="text-center text-lg tracking-[0.35em]"
-                />
+                  <AuthField
+                    label="Verification code"
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="one-time-code"
+                    pattern="[0-9]*"
+                    maxLength={6}
+                    value={otpCode}
+                    onChange={(e) =>
+                      setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                    }
+                    placeholder="000000"
+                    required
+                    className="text-center text-lg tracking-[0.35em]"
+                  />
 
-                {error && (
-                  <p className="text-sm text-red-400" role="alert">
-                    {error}
-                  </p>
-                )}
+                  <AuthAlerts error={error} info={info} />
 
-                {info && (
-                  <p className="text-sm text-emerald-400" role="status">
-                    {info}
-                  </p>
-                )}
-
-                <div className="flex flex-col items-center justify-center gap-3">
                   <button
                     type="submit"
                     disabled={otpCode.length !== 6}
-                    className="group/button relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-md bg-[var(--auth-border)] px-4 py-2 text-xs font-normal text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-[var(--auth-text-primary)] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="auth-login__submit"
                   >
-                    <span className="px-2 py-1 text-sm">Verify and sign in</span>
+                    Verify and sign in
                   </button>
-                  <button
-                    type="button"
-                    onClick={onResendOtp}
-                    className="text-sm text-[var(--auth-text-secondary)] hover:text-[var(--auth-heading)]"
-                  >
-                    Resend code
-                  </button>
-                  <button
-                    type="button"
-                    onClick={onBack}
-                    className="text-sm text-[var(--auth-text-secondary)] hover:text-[var(--auth-heading)]"
-                  >
-                    Back
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <form
-                className="grid h-full gap-4 text-center"
-                onSubmit={handleSubmit}
-              >
-                <div className="mb-2 grid gap-4">
-                  <h1 className="text-3xl font-extrabold text-[var(--auth-heading)] md:text-4xl">
-                    {isSignUp ? "Create account" : "Sign in"}
-                  </h1>
-                  <div className="social-container">
-                    <div className="flex items-center justify-center">
-                      <button
-                        type="button"
-                        onClick={onGoogleSignIn}
-                        aria-label="Continue with Google"
-                        className="group relative z-[1] flex h-12 items-center gap-3 overflow-hidden rounded-full border-2 border-[var(--auth-text-primary)] bg-[var(--auth-bg-2)] px-5 transition hover:scale-105"
-                      >
-                        <div className="absolute inset-0 origin-bottom scale-y-0 bg-[var(--auth-bg)] transition-transform duration-500 ease-in-out group-hover:scale-y-100" />
-                        <span className="z-[2] flex items-center gap-2 text-[var(--auth-bg)] transition-all duration-500 ease-in-out group-hover:text-[var(--auth-text-primary)]">
-                          <IconBrandGoogle className="h-5 w-5" />
-                          <span className="text-sm font-medium">
-                            Continue with Google
-                          </span>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                  <span className="text-sm text-[var(--auth-text-secondary)]">
-                    or use your email
-                  </span>
-                </div>
 
-                <div className="grid items-center gap-4">
-                  {isSignUp && (
-                    <AppInput
-                      placeholder="Full name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      autoComplete="name"
+                  <div className="flex items-center justify-between gap-4">
+                    <button
+                      type="button"
+                      onClick={onResendOtp}
+                      className="auth-login__link"
+                    >
+                      Resend code
+                    </button>
+                    <button
+                      type="button"
+                      onClick={onBack}
+                      className="auth-login__link"
+                    >
+                      Use a different account
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <form className="auth-login__form" onSubmit={handleSubmit}>
+                  <div className="grid gap-2 text-left">
+                    <h1 className="font-display text-3xl font-semibold tracking-tight text-[var(--auth-heading)]">
+                      {isSignUp ? "Create your account" : "Welcome back"}
+                    </h1>
+                    <p className="text-sm text-[var(--auth-text-secondary)]">
+                      {isSignUp
+                        ? "Join your neighborhood time bank with email."
+                        : "Sign in to manage offers, requests, and your hour balance."}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={onGoogleSignIn}
+                    className="auth-login__google"
+                    aria-label="Continue with Google"
+                  >
+                    <IconBrandGoogle className="h-5 w-5" />
+                    Continue with Google
+                  </button>
+
+                  <div className="auth-login__divider">or continue with email</div>
+
+                  <div className="grid gap-4">
+                    {isSignUp && (
+                      <AuthField
+                        label="Full name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        autoComplete="name"
+                        placeholder="Alex Rivera"
+                        required
+                      />
+                    )}
+                    <AuthField
+                      label="Email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      autoComplete="email"
+                      placeholder="you@example.com"
                       required
                     />
-                  )}
-                  <AppInput
-                    placeholder="Email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    autoComplete="email"
-                    required
-                  />
-                  <AppInput
-                    placeholder="Password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    autoComplete={isSignUp ? "new-password" : "current-password"}
-                    minLength={6}
-                    required
-                  />
-                </div>
+                    <AuthField
+                      label="Password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      autoComplete={isSignUp ? "new-password" : "current-password"}
+                      placeholder={isSignUp ? "At least 6 characters" : "Your password"}
+                      minLength={6}
+                      required
+                    />
+                  </div>
 
-                {error && (
-                  <p className="text-sm text-red-400" role="alert">
-                    {error}
-                  </p>
-                )}
+                  <AuthAlerts error={error} info={info} />
 
-                {info && (
-                  <p className="text-sm text-emerald-400" role="status">
-                    {info}
-                  </p>
-                )}
-
-                <div className="flex items-center justify-center gap-4">
-                  <button
-                    type="submit"
-                    className="group/button relative inline-flex cursor-pointer items-center justify-center overflow-hidden rounded-md bg-[var(--auth-border)] px-4 py-2 text-xs font-normal text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-[var(--auth-text-primary)]"
-                  >
-                    <span className="px-2 py-1 text-sm">
-                      {isSignUp ? "Sign up with email" : "Continue"}
-                    </span>
-                    <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]">
-                      <div className="relative h-full w-8 bg-white/20" />
-                    </div>
+                  <button type="submit" className="auth-login__submit">
+                    {isSignUp ? "Create account" : "Continue to verification"}
                   </button>
-                </div>
 
-                {footer && <div className="mt-auto pt-2">{footer}</div>}
-              </form>
-            )}
+                  {footer && (
+                    <div className="auth-login__footer">
+                      {footer}
+                    </div>
+                  )}
+                </form>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="relative hidden h-full w-1/2 overflow-hidden lg:block">
+        <aside className="auth-login__hero">
           <Image
             src={HERO_IMAGE}
-            alt="Neighbors helping each other in the community"
+            alt="Neighbors supporting each other in the community"
             fill
             priority
-            className="object-cover opacity-40"
-            sizes="50vw"
+            className="object-cover"
+            sizes="48vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--auth-bg)] via-transparent to-transparent" />
-          <div className="absolute right-8 bottom-8 left-8">
-            <p className="text-lg font-semibold text-[var(--auth-heading)]">
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(8,51,68,0.75)] via-[rgba(8,51,68,0.15)] to-transparent" />
+          <div className="auth-login__hero-copy">
+            <p className="font-display text-xl font-semibold text-white">
               Exchange time, build trust
             </p>
-            <p className="mt-2 text-sm text-[var(--auth-text-secondary)]">
+            <p className="mt-2 text-sm leading-relaxed text-white/82">
               Join your neighborhood time bank and trade skills hour for hour.
             </p>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );
