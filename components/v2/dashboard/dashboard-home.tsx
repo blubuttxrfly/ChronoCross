@@ -141,7 +141,7 @@ export function DashboardHome() {
 
           {/* Sidebar Cards */}
           <aside className="flex flex-col gap-6">
-            <div className="rounded-3xl bg-[#14261f] p-10 text-white shadow-sm">
+            <div className="rounded-3xl bg-[#14261f] p-12 text-white shadow-sm">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-sm font-medium text-white/70">Your Balance</p>

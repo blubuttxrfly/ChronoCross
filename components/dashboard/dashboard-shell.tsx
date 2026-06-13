@@ -57,10 +57,10 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               ChronoCross
             </span>
           </Link>
-
+          {/* CTA Button */}
           <Link
             href="/dashboard/offers"
-            className="dashboard-sidebar__item mt-6 flex h-11 items-center gap-3 rounded-lg bg-[#f6c35b] px-3 text-sm font-semibold text-[#14261f] shadow-sm transition-colors hover:bg-[#e9b349]"
+            className="dashboard-sidebar__item mt-8 flex h-12 items-center gap-3 rounded-lg bg-[#f6c35b] px-4 text-sm font-semibold text-[#14261f] shadow-sm transition-colors hover:bg-[#e9b349]"
           >
             <IconPlus className="h-5 w-5 shrink-0" stroke={2} />
             <span className="dashboard-sidebar__label overflow-hidden whitespace-nowrap">
@@ -68,7 +68,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </span>
           </Link>
 
-          <nav className="mt-8 flex flex-1 flex-col gap-2">
+          <nav className="mt-10 flex flex-1 flex-col gap-3">
             {NAV_LINKS.map((link) => {
               const Icon = link.icon;
               const active = isActive(link.href);
@@ -172,9 +172,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           </nav>
         )}
       </header>
-
+      {/* Main Content Area */}
       <main className="dashboard-main min-h-screen md:pl-[4.75rem]">
-        <div className="px-6 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+        <div className="px-10 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-20">
           {children}
         </div>
       </main>

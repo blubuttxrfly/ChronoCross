@@ -56,13 +56,13 @@ function SectionHeader({
   href?: string;
 }) {
   return (
-    <div className="mb-8 sm:mb-10 flex items-center justify-between gap-4">
+    <div className="mb-10 sm:mb-12 flex items-center justify-between gap-4">
       <div>
         <h2 className="text-2xl font-semibold tracking-tight text-[#1d251f]">
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-2 text-sm text-[#74776f]">{subtitle}</p>
+          <p className="mt-2.5 text-sm text-[#74776f]">{subtitle}</p>
         )}
       </div>
       {href && (
@@ -94,12 +94,12 @@ function SmallOpportunity({
   return (
     <Link
       href={type === "offer" ? "/dashboard/offers" : "/dashboard/requests"}
-      className="flex items-center gap-4 rounded-2xl border border-[#e7e1d8] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+      className="flex items-center gap-5 rounded-2xl border border-[#e7e1d8] bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
     >
       <MemberAvatar name={memberName} size="sm" className="!h-11 !w-11" />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-semibold text-[#1d251f]">{title}</p>
-        <p className="mt-1 text-xs text-[#74776f]">
+        <p className="mt-1.5 text-xs text-[#74776f]">
           {category}
         </p>
       </div>
@@ -120,31 +120,29 @@ export function DashboardHome() {
       {/* Hero Section */}
       <section className="mb-10 sm:mb-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-          {/* Main Hero Card */}
-          <div className="relative rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-8 sm:p-10 lg:p-12 pb-8 sm:pb-10 shadow-sm">
+          <div className="relative rounded-3xl border border-[#e6dfd4] bg-gradient-to-br from-[#fbf7ef] to-[#f5f0e8] p-14 sm:p-16 lg:p-20 pb-14 sm:pb-16 shadow-sm">
             <div className="relative z-10 max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold text-[#5c5f57] shadow-sm backdrop-blur-sm">
                 <IconHeartHandshake className="h-4 w-4 text-[#b5791b]" stroke={2} />
                 Community Time Bank
               </div>
-              <h1 className="mt-6 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-[#16241d]">
+              <h1 className="mt-8 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-[#16241d]">
                 Find help nearby. Pay with hours.
               </h1>
-              <p className="mt-5 text-sm sm:text-base leading-relaxed text-[#646860]">
+              <p className="mt-7 text-sm sm:text-base leading-relaxed text-[#646860]">
                 Trade one hour of your skills for one hour from someone else.
                 Browse neighbors offering repairs, tutoring, gardening, errands,
                 and the everyday help that makes life easier.
               </p>
             </div>
-            <div className="relative z-10 mt-10 sm:mt-12">
+            <div className="relative z-10 mt-14 sm:mt-16">
               <MarketplaceSearch />
             </div>
           </div>
 
           {/* Sidebar Cards */}
-          <aside className="flex flex-col gap-5">
-            {/* Balance Card */}
-            <div className="rounded-3xl bg-[#14261f] p-8 text-white shadow-sm">
+          <aside className="flex flex-col gap-6">
+            <div className="rounded-3xl bg-[#14261f] p-10 text-white shadow-sm">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-sm font-medium text-white/70">Your Balance</p>
@@ -201,7 +199,7 @@ export function DashboardHome() {
       </section>
 
       {/* Categories Section */}
-      <section className="mb-10 sm:mb-12">
+      <section className="mb-12 sm:mb-14">
         <SectionHeader
           title="Browse by category"
           subtitle="Find the perfect exchange for your needs"
@@ -214,7 +212,7 @@ export function DashboardHome() {
       </section>
 
       {/* Featured Offers Section */}
-      <section className="mb-10 sm:mb-12">
+      <section className="mb-12 sm:mb-14">
         <SectionHeader
           title="Popular offers nearby"
           subtitle="Book an hour from someone in the community"
@@ -237,7 +235,7 @@ export function DashboardHome() {
       </section>
 
       {/* Requests + Community Grid */}
-      <section className="mb-10 sm:mb-12 grid gap-10 lg:grid-cols-[1fr_360px]">
+      <section className="mb-12 sm:mb-14 grid gap-12 lg:grid-cols-[1fr_360px]">
         {/* Requests Column */}
         <div>
           <SectionHeader
@@ -260,14 +258,14 @@ export function DashboardHome() {
               <Link
                 key={member.id}
                 href="/dashboard/community"
-                className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
                 <MemberAvatar name={member.name} size="sm" className="!h-11 !w-11" />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold text-[#1d251f]">
                     {member.name}
                   </p>
-                  <p className="mt-0.5 truncate text-xs text-[#74776f]">
+                  <p className="mt-1 truncate text-xs text-[#74776f]">
                     {member.skills.join(" • ")}
                   </p>
                 </div>
@@ -279,7 +277,7 @@ export function DashboardHome() {
       </section>
 
       {/* Fresh in Network Section */}
-      <section>
+      <section className="mb-12 sm:mb-14">
         <SectionHeader
           title="Fresh in your network"
           subtitle="New opportunities just for you"
